@@ -15,7 +15,7 @@ public class Bank {
 		Kontostand = kontostand;
 	}
 
-	public synchronized boolean transfer(int i, double geldTransfer){
+	public boolean transfer(int i, double geldTransfer){
 		if(i==0){
 			//Auszahlung
 			if(this.getKontostand()<geldTransfer){

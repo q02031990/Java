@@ -24,12 +24,18 @@ public class GrandChild extends Thread {
 				kontostand = n; 
 				System.out.println(nameChild + " mochte :" + n +" Euro auszahlen\n");
 				if(bank.transfer(0, kontostand)){;
+				//auszahlung
 					System.out.println("\n-------------Auszahlung---------------------\n");
 					System.out.println(nameChild + " hat :" + n +" Euro ausgezahlt\n");
 					System.out.println("Konto :" + bank.getKontostand() +"\n");
 				}else{
-					Thread.sleep(warteZeit); // cho ong chuyen khoan vao
+					//Thread.sleep(warteZeit*100); // cho ong chuyen khoan vao
 					System.out.println("Konto: " + bank.getKontostand() +" -> kann nicht auszahlen");
+					synchronized (bank) {
+						//su dung phuong phap dong bo tren 2 tieng trinh trong 1 obj(bank)
+						//Chi cho 1 tien trinh duoc lam viec tren obj Obj
+						bank.wait();
+					}
 				}
 				Thread.yield();
 			}
