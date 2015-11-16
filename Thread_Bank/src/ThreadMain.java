@@ -17,7 +17,7 @@ public class ThreadMain {
 		GrandChild a3 = new GrandChild(bank,nameChild3,warteZeit, 1000);
 	
 		
-		ArrayList<GrandChild> kinder =  new ArrayList();
+		ArrayList<GrandChild> kinder =  new ArrayList<GrandChild>();
 		kinder.add(a1);
 		kinder.add(a2);
 		kinder.add(a3);

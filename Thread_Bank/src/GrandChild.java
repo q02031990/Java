@@ -1,13 +1,11 @@
 import java.util.Random;
 
-import javax.lang.model.type.PrimitiveType;
-
 public class GrandChild extends Thread {
 	private Bank bank;
 	private String nameChild;
 	private int warteZeit;
 	private double kontostand =0;
-	private double geld;
+
 	
 	public double getKontostand() {
 		return kontostand;
@@ -40,7 +38,6 @@ public class GrandChild extends Thread {
 				{
 					Thread.sleep(warteZeit); // cho ong chuyen khoan vao
 					System.out.println("Konto: " + bank.getKontostand() +" -> kann nicht auszahlen");
-					
 					synchronized(this)
 					{
 						this.wait();
@@ -52,17 +49,12 @@ public class GrandChild extends Thread {
 		catch(Exception exs){
 			System.out.println("jjlldfjslkdj");
 		}
-		
-		int ab = 2345;
-		if(ab==333)
-			ab=43;
 	}
 	
 	GrandChild(Bank bank, String nameChild, int warteZeit, double geld){
 		this.bank = bank;
 		this.nameChild = nameChild;
 		this.warteZeit = warteZeit;
-		this.geld = geld;
 	}
 }
 
