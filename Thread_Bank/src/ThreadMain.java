@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class ThreadMain {
 	static public void main(String arg[]){
@@ -9,14 +10,24 @@ public class ThreadMain {
 		
 		int warteZeit =10;
 		
-		GrandChild a1 = new GrandChild(bank,nameChild1,warteZeit);
-		GrandChild a2 = new GrandChild(bank,nameChild2,warteZeit);
-		GrandChild a3 = new GrandChild(bank,nameChild3,warteZeit);
+		GrandChild a1 = new GrandChild(bank,nameChild1,warteZeit, 800);
 		
-		GrandFather b = new GrandFather(bank,opa,warteZeit);
+		GrandChild a2 = new GrandChild(bank,nameChild2,warteZeit, 1);
+	
+		GrandChild a3 = new GrandChild(bank,nameChild3,warteZeit, 1000);
+	
+		
+		ArrayList<GrandChild> kinder =  new ArrayList();
+		kinder.add(a1);
+		kinder.add(a2);
+		kinder.add(a3);
+		
+		GrandFather b = new GrandFather(bank,opa,1000, kinder);
 
 		a1.start();
-	
+		a2.start();
+		a3.start();
+		
 		
 		b.start();
 		

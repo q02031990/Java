@@ -1,10 +1,13 @@
 import java.util.Random;
 
+import javax.lang.model.type.PrimitiveType;
+
 public class GrandChild extends Thread {
 	private Bank bank;
 	private String nameChild;
 	private int warteZeit;
 	private double kontostand =0;
+	private double geld;
 	
 	public double getKontostand() {
 		return kontostand;
@@ -16,38 +19,50 @@ public class GrandChild extends Thread {
 
 	public void run(){
 		super.run();
-		try{
-			while(!isInterrupted()){
+		try
+		{
+			while(true)
+			{
 				Random rand = new Random();
 				double n = rand.nextInt(1000);
 				//cong don cac lan rut vao de roi rut 1 the;
 				kontostand = n; 
 				System.out.println(nameChild + " mochte :" + n +" Euro auszahlen\n");
-				if(bank.transfer(0, kontostand)){;
+				if(bank.transfer(0, kontostand))
+				{
 				//auszahlung
+					Thread.sleep(warteZeit);
 					System.out.println("\n-------------Auszahlung---------------------\n");
 					System.out.println(nameChild + " hat :" + n +" Euro ausgezahlt\n");
-					System.out.println("Konto :" + bank.getKontostand() +"\n");
-				}else{
-					//Thread.sleep(warteZeit*100); // cho ong chuyen khoan vao
+					System.out.println("Konto :" + bank.getKontostand() +"\n");	
+				}
+				else
+				{
+					Thread.sleep(warteZeit); // cho ong chuyen khoan vao
 					System.out.println("Konto: " + bank.getKontostand() +" -> kann nicht auszahlen");
-					synchronized (bank) {
-						//su dung phuong phap dong bo tren 2 tieng trinh trong 1 obj(bank)
-						//Chi cho 1 tien trinh duoc lam viec tren obj Obj
-						bank.wait();
+					
+					synchronized(this)
+					{
+						this.wait();
 					}
 				}
 				Thread.yield();
 			}
-		}catch(InterruptedException ex){
-			
 		}
+		catch(Exception exs){
+			System.out.println("jjlldfjslkdj");
+		}
+		
+		int ab = 2345;
+		if(ab==333)
+			ab=43;
 	}
 	
-	GrandChild(Bank bank, String nameChild, int warteZeit){
+	GrandChild(Bank bank, String nameChild, int warteZeit, double geld){
 		this.bank = bank;
 		this.nameChild = nameChild;
 		this.warteZeit = warteZeit;
+		this.geld = geld;
 	}
 }
 

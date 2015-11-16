@@ -1,7 +1,10 @@
+import java.awt.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class GrandFather extends Thread {
 
+	ArrayList<GrandChild> kinder;
 	private Bank bank;
 	private String nameChild;
 	private double kontostand = 0;
@@ -47,10 +50,17 @@ public class GrandFather extends Thread {
 				Thread.sleep(wartezeit);
 			}
 			if (bank.Kontostand >= 1000) {
-				synchronized (bank) {
-					bank.notify();
-					//notify();
+				
+				for(int i = 0; i<kinder.size(); i++){
+					if(kinder.get(i).getState() == Thread.State.WAITING)
+						synchronized(kinder.get(i))
+						{
+							kinder.get(i).notify();
+						}
 				}
+				
+				
+				
 				Thread.yield();
 			}
 
@@ -62,9 +72,10 @@ public class GrandFather extends Thread {
 
 	}
 
-	GrandFather(Bank bank, String nameChild, int warteZeit) {
+	GrandFather(Bank bank, String nameChild, int warteZeit, ArrayList<GrandChild>  kinder) {
 		this.bank = bank;
 		this.nameChild = nameChild;
 		this.wartezeit = warteZeit;
+		this.kinder= kinder;
 	}
 }
