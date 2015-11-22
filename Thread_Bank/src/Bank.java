@@ -1,4 +1,4 @@
-
+// Bank class
 public class Bank {
 	public Bank(double kontostand) {
 		super();
