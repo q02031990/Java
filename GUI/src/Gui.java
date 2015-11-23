@@ -3,7 +3,7 @@ import javax.swing.*;
 import Model.*;
 
 import Controller.GUIController;
-//import View.InputView;
+//import View.InputView
 import View.*;
 
 public class Gui {
