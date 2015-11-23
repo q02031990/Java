@@ -8,7 +8,7 @@ import View.*;
 
 public class Gui {
 	static public void main(String arg[]) {
-		//goi view
+		//goi view dskdkljsk
 		GUIView View = new GUIView();
 		GUIModel Model = new GUIModel();
 		
