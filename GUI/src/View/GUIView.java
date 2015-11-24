@@ -72,6 +72,9 @@ public class GUIView extends JFrame{
 		jp.add(btu);
 		
 		jp.setLayout(gl);
+		
+		// phai add Panel vao windows
+		this.add(jp);
 	}
 	
 	public String get_Measure(){

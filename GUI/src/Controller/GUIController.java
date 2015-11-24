@@ -26,14 +26,18 @@ public class GUIController implements ActionListener {
 	class TinhtoanListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e){
-			resualt resualt = null;
+			resualt resualt;
 			try{
-				resualt.setCurrent(Integer.parseInt(theView.get_Current()));
-				resualt.setMeasure(theView.get_Measure());
-				theModel.CalculatorPower(resualt.getVolt(), resualt.getCurrent());
-				resualt.setPower(resualt.getPower());
+				int volt = Integer.parseInt(theView.get_Volt());
+				int current = Integer.parseInt(theView.get_Current());
+				int power = volt * current;
+				
+				resualt = new resualt(theView.get_Measure(),current , volt ,power);
+				
+				GUIResualt re = new GUIResualt();
+				re.showResualt();
 			}catch(Exception ex){
-				theView.DisplayError("error");
+				theView.DisplayError("error" + ex.toString());
 			}
 		}
 		
