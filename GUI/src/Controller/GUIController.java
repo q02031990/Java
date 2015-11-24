@@ -9,31 +9,31 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 
 import View.GUIView;
+import lib.resualt;
 
 public class GUIController implements ActionListener {
 
-	private GUIView View;
-	private GUIModel Model;
+	private GUIView theView;
+	private GUIModel theModel;
 	//start form
 	
 	public GUIController(GUIView View, GUIModel Model ) {
-		this.View = View;
-		this.Model = Model;
+		this.theView = View;
+		this.theModel = Model;
 		
-		this.View.TinhToan(new TinhtoanListener());
-		
-		
+		this.theView.DisplayResualt(new TinhtoanListener());
 	}
 	class TinhtoanListener implements ActionListener{
 		
 		public void actionPerformed(ActionEvent e){
-			String i,j;
+			resualt resualt = null;
 			try{
-				i = View.get_Measure();
-				j = View.get_Current();
-				Model.ab(j, j);
+				resualt.setCurrent(Integer.parseInt(theView.get_Current()));
+				resualt.setMeasure(theView.get_Measure());
+				theModel.CalculatorPower(resualt.getVolt(), resualt.getCurrent());
+				resualt.setPower(resualt.getPower());
 			}catch(Exception ex){
-				View.DisplayError("error");
+				theView.DisplayError("error");
 			}
 		}
 		

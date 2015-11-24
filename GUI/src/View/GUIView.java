@@ -6,10 +6,9 @@ import javax.swing.*;
 import java.awt.*;
 
 
-public class GUIView extends JComponent  {
+public class GUIView extends JFrame{
 	/*
 	 * Khai bao cac thanh phan tren form
-	 * 
 	 */
 	private GridLayout gl = new GridLayout(0, 2);
 	
@@ -41,7 +40,7 @@ public class GUIView extends JComponent  {
 		super();
 		
 		JPanel jp = new JPanel();
-		this.setDebugGraphicsOptions(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setSize(600,800);
 		
 		// hang 1
@@ -86,13 +85,14 @@ public class GUIView extends JComponent  {
 	public String get_Volt(){
 		if(v1.isSelected()){
 			return "50";
-		}else if(v2.isSelected()){
+		}if(v2.isSelected()){
 			return "100";
+		}else{
+			return "150";
 		}
-		return "150";
 	}
 	
-	public void TinhToan(ActionListener listenAction){
+	public void DisplayResualt(ActionListener listenAction){
 		btu.addActionListener(listenAction);
 	}
 	

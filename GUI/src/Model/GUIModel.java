@@ -1,24 +1,19 @@
 package Model;
 
+import lib.resualt;
+
 public class GUIModel {
-	private String a;
-	private String b;
 	
-	public String getA() {
-		return a;
-	}
-	public void setA(String a) {
-		this.a = a;
-	}
-	public String getB() {
-		return b;
-	}
-	public void setB(String b) {
-		this.b = b;
+	private resualt resualt ;
+	
+	public void CalculatorPower(int volt, int current){
+		resualt.setCurrent(current);
+		resualt.setVolt(volt);
+		resualt.setPower(volt * current);
 	}
 	
-	public String ab(String a, String b){
-		return a+b;
+	public resualt getResualt(){
+		return resualt;
 	}
 	
 }
