@@ -34,7 +34,9 @@ public class GUIResualt extends Frame {
 		JLabel lb_MeasureR =  new JLabel("0193029039");
 		
 		jp.add(lb_Measure);
-		jp.add(lb_MeasureR);/*
+		jp.add(lb_MeasureR);
+		
+		/*
 		jp.add(lb_Current);
 		jp.add(lb_CurrentR);
 		
